@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebRTC</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="content">
+        <p>Welcome to my fancy page</p>
+        <button class="btn-fancy" onclick="openModal()">Open Status</button>
+        <button class="btn-fancy" onclick="showVideo()">Show Video</button>
+        <div id="video">
+          <video id="localVideo" autoplay playsinline controls="false"></video>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="content next">
+        <p>Welcome to my NEXT LEVEL fancy page</p>
+        <div class="btns">
+          <button id="host" class="btn-fancy" onclick="gogoHost()">
+            Host the SHOW
+          </button>
+          <button id="client" class="btn-fancy" onclick="gogoClient()">
+            Become a Client(LAME)
+          </button>
+          <button id="closeConn" class="btn-fancy" noshow>
+            Close Channel
+          </button>
+          <button class="btn-fancy" onclick="openModal()">Open Status</button>
+        </div>
+        <br />
+        <input type="text" placeholder="SDP(Answer) from Host" id="SDP"/>
+        <div class="error">Please enter the required data</div>
+        <p>Click to Copy</p>
+        <div id="messages">
+          
+        </div>
+      </div>
+    </div>
+    <div id="modals" onclick="closeModal()">
+      <div class="close"></div>
+      <div class="backdrop"></div>
+      <div id="modal"></div>
+    </div>
+    <div id="status"></div>
+    <script src="script.js"></script>
+    <!-- <script src="./js/input.js"></script>  -->
+    <!-- Only for audio video inputs and show No signaling -->
+
+    <script src="./js/host_signalling.js" type="text/javascript"></script>
+    <script src="./js/client_signalling.js" type="text/javascript"></script>
+  </body>
+</html>
