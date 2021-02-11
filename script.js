@@ -92,7 +92,7 @@ gogoClient = function () {
   document.getElementById("host").setAttribute("noshow", "");
   document.getElementById("SDP").setAttribute("noshow", "");
   document.getElementById("closeConn").removeAttribute("noshow");
-  if(rc.dc.close() == undefined) sendError("No Connections Established");
+  if(typeof(rc.dc) == undefined) sendError("No Connections Established");
   else document.getElementById("closeConn").setAttribute("onclick", "rc.dc.close()");
   // if (iceCandidates != []) iceCandidates.forEach((e) => showonDoc(e));
   clientSide(JSON.parse(SDP.value));

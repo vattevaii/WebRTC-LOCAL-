@@ -1,29 +1,29 @@
-const rc = new RTCPeerConnection(); //RemoteConn
-rc.ice = false;
+// Variables
+let rc; //RemoteConnection
 
-rc.ondatachannel = (e) => {
-  rc.dc = e.channel;  //RemoteConn DataChannel
-  rc.dc.onmessage = (e) => console.log("New Message : " + e.data);
-  rc.dc.onopen = (e) => console.log("Connection open in Client!!!!!!!");
-  rc.dc.onclose = (e) => {
-    console.log("Connection closed :( " + e);
-    closeClient();
-  }
-};
+function initClient() {
+  
+  // RTCPeerConnection(servers) anyways same as lc;
+  // Locally run so no servers
+  rc = new RTCPeerConnection();
+  // console Created remote peer conn. WHATEVER
 
-rc.onicecandidate = (e) => {
-  // console.log(
-  //   "New Ice Candidate!! Reprinting SDP! " + JSON.stringify(rc.localDescription)
-  // );
-  rc.ice = true;
-  showonDoc(JSON.stringify(rc.localDescription));
-};
-var clientSide = function (SDP) {
-  rc.setRemoteDescription(SDP).then((a) => console.log("Offer Set!!"));
-  var ice = rc
-    .createAnswer()
-    .then((a) => rc.setLocalDescription(a))
-    .then((a) => console.log("Answer Created !! "));
-  console.log("MY ICE" + ice);
-};
+  rc.onicecandidate = (event) => {
+    if (event.candidate) {
+      //send to host
+    } else {
+      //No candidate.. Yo want me to dance??
+    }
+  };
 
+  rc.ondatachannel = (event) => {
+    // if other party ANYONE creates dataChannel
+    event.channel.onopen = () => {
+      //Data channel fully opened and ready for exchange
+    };
+  };
+}
+//DataChannel
+rc.dc = "";
+let sendChannel;
+let receiveChannel;
