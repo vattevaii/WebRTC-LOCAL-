@@ -172,3 +172,19 @@ input.empty+.error::before{
 #messages>div:focus{
   background-color: rgba(250, 235, 215, 0.925);
 }
+#sdps-2{
+  margin: 10px;
+  height: 100%;
+}
+#sdps-2 > span{
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color:#872929;
+  padding: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+#sdps-2 > span:active{
+  background-color: red;
+}

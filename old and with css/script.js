@@ -68,7 +68,7 @@ var gogoHost = function () {
 };
 
 var closeHost = () => {
-  if(dc.ice) dc.restartIce();
+  if (dc.ice) dc.restartIce();
   document.getElementById("messages").innerHTML = "";
   document.getElementById("host").innerText = "Become a Host";
   document.getElementById("client").removeAttribute("noshow");
@@ -92,15 +92,18 @@ gogoClient = function () {
   document.getElementById("host").setAttribute("noshow", "");
   document.getElementById("SDP").setAttribute("noshow", "");
   document.getElementById("closeConn").removeAttribute("noshow");
-  if(typeof(rc.dc) == undefined) sendError("No Connections Established");
-  else document.getElementById("closeConn").setAttribute("onclick", "rc.dc.close()");
+  if (typeof rc.dc == undefined) sendError("No Connections Established");
+  else
+    document
+      .getElementById("closeConn")
+      .setAttribute("onclick", "rc.dc.close()");
   // if (iceCandidates != []) iceCandidates.forEach((e) => showonDoc(e));
   clientSide(JSON.parse(SDP.value));
   SDP.value == "";
 };
 
 var closeClient = () => {
-  if(rc.ice) rc.restartIce();
+  if (rc.ice) rc.restartIce();
   document.getElementById("messages").innerHTML = "";
   // document.getElementById("host").innerText = "Become a Host";
   document.getElementById("host").removeAttribute("noshow");
@@ -110,11 +113,15 @@ var closeClient = () => {
 };
 
 var sendError = (e) => {
+  declaration(e);
+  setStatus(0);
+  closeClient();
+};
+
+var declaration = (e) => {
   var modals = document.getElementById("modal");
   modals.innerHTML = `<div class="modal">
                           <div>${e}</div>
                       </div>`;
-  setStatus(0);
-  closeClient();
   openModal();
-}
+};
